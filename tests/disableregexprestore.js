@@ -26,8 +26,10 @@ new IntlPolyfill.NumberFormat('en-US', {
     currency: 'GBP',
     minimumFractionDigits: 2,
 });
-assertEqual(RegExp.input, 'a foo test', 'Normally, RegExp.input should be cached and restored');
-assertEqual(RegExp.lastMatch, 'foo', 'Normally, RegExp.lastMatch should be cached and restored');
+var actualInput = RegExp.input;
+var actualLastMatch = RegExp.lastMatch;
+assertEqual(actualInput, 'a foo test', 'Normally, RegExp.input should be cached and restored');
+assertEqual(actualLastMatch, 'foo', 'Normally, RegExp.lastMatch should be cached and restored');
 
 // Issues #231
 /function[\s\S]+(})/.exec('function defineProperty\\(\\) \\{\n    \\[native code\\]\n\\}');
@@ -36,8 +38,10 @@ new IntlPolyfill.NumberFormat('en-US', {
     currency: 'GBP',
     minimumFractionDigits: 2,
 });
-assertEqual(RegExp.input, 'function defineProperty\\(\\) \\{\n    \\[native code\\]\n\\}', 'Normally, RegExp.input should be cached and restored');
-assertEqual(RegExp.lastMatch, 'function defineProperty\\(\\) \\{\n    \\[native code\\]\n\\}', 'Normally, RegExp.lastMatch should be cached and restored');
+actualInput = RegExp.input;
+actualLastMatch = RegExp.lastMatch;
+assertEqual(actualInput, 'function defineProperty\\(\\) \\{\n    \\[native code\\]\n\\}', 'Normally, RegExp.input should be cached and restored');
+assertEqual(actualLastMatch, 'function defineProperty\\(\\) \\{\n    \\[native code\\]\n\\}', 'Normally, RegExp.lastMatch should be cached and restored');
 
 IntlPolyfill.__disableRegExpRestore();
 /foo/.exec('a foo test');
